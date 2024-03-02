@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a0481faffd9d482eae6c2f6b695d75cb" Name="Diagram1">
+        <EntityTypeShape EntityType="PractikaZachotModel.Cloth" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.Cloth_of_products" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.Fabric_warehouse" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.Furniture" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.Furniture_of_product" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.Order" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.Ordered_products" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.The_product" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.User" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="PractikaZachotModel.Warehouse_of_furniture" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Cloth_of_products_Cloth" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Fabric_warehouse_Cloth" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Cloth_of_products_The_product" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Furniture_of_product_Furniture" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Warehouse_of_furniture_Furniture" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Furniture_of_product_The_product" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Order_Ordered_products" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Order_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Order_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="PractikaZachotModel.FK_Ordered_products_The_product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

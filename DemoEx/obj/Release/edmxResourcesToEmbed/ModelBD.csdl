@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PractikaZachotModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cloth">
+    <Key>
+      <PropertyRef Name="Article_of_cloth" />
+    </Key>
+    <Property Name="Article_of_cloth" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Composition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Length" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Cloth_of_products" Relationship="Self.FK_Cloth_of_products_Cloth" FromRole="Cloth" ToRole="Cloth_of_products" />
+    <NavigationProperty Name="Fabric_warehouse" Relationship="Self.FK_Fabric_warehouse_Cloth" FromRole="Cloth" ToRole="Fabric_warehouse" />
+  </EntityType>
+  <EntityType Name="Cloth_of_products">
+    <Key>
+      <PropertyRef Name="Id_cloth_of_products" />
+    </Key>
+    <Property Name="Id_cloth_of_products" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_of_cloth" Type="Int32" />
+    <Property Name="ID_Product" Type="Int32" />
+    <NavigationProperty Name="Cloth" Relationship="Self.FK_Cloth_of_products_Cloth" FromRole="Cloth_of_products" ToRole="Cloth" />
+    <NavigationProperty Name="The_product" Relationship="Self.FK_Cloth_of_products_The_product" FromRole="Cloth_of_products" ToRole="The_product" />
+  </EntityType>
+  <EntityType Name="Fabric_warehouse">
+    <Key>
+      <PropertyRef Name="Article_of_cloth" />
+    </Key>
+    <Property Name="Article_of_cloth" Type="Int32" Nullable="false" />
+    <Property Name="Roll" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Length" Type="Int32" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Cloth" Relationship="Self.FK_Fabric_warehouse_Cloth" FromRole="Fabric_warehouse" ToRole="Cloth" />
+  </EntityType>
+  <EntityType Name="Furniture">
+    <Key>
+      <PropertyRef Name="Article_of_furniture" />
+    </Key>
+    <Property Name="Article_of_furniture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Length" Type="Int32" />
+    <Property Name="Weight" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Furniture_of_product" Relationship="Self.FK_Furniture_of_product_Furniture" FromRole="Furniture" ToRole="Furniture_of_product" />
+    <NavigationProperty Name="Warehouse_of_furniture" Relationship="Self.FK_Warehouse_of_furniture_Furniture" FromRole="Furniture" ToRole="Warehouse_of_furniture" />
+  </EntityType>
+  <EntityType Name="Furniture_of_product">
+    <Key>
+      <PropertyRef Name="id_FoP" />
+    </Key>
+    <Property Name="id_FoP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_of_furniture" Type="Int32" />
+    <Property Name="ID_Product" Type="Int32" />
+    <Property Name="Placement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Length" Type="Int32" />
+    <Property Name="Rotation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Furniture" Relationship="Self.FK_Furniture_of_product_Furniture" FromRole="Furniture_of_product" ToRole="Furniture" />
+    <NavigationProperty Name="The_product" Relationship="Self.FK_Furniture_of_product_The_product" FromRole="Furniture_of_product" ToRole="The_product" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Order_number" />
+    </Key>
+    <Property Name="Order_number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="The_stage_of_execution" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Ordered_products" Relationship="Self.FK_Order_Ordered_products" FromRole="Order" ToRole="Ordered_products" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Order_User1" FromRole="Order" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Ordered_products">
+    <Key>
+      <PropertyRef Name="Order_number" />
+    </Key>
+    <Property Name="Order_number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Product" Type="Int32" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_Ordered_products" FromRole="Ordered_products" ToRole="Order" />
+    <NavigationProperty Name="The_product" Relationship="Self.FK_Ordered_products_The_product" FromRole="Ordered_products" ToRole="The_product" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="The_product">
+    <Key>
+      <PropertyRef Name="ID_Product" />
+    </Key>
+    <Property Name="ID_Product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_of_product" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Length" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Cloth_of_products" Relationship="Self.FK_Cloth_of_products_The_product" FromRole="The_product" ToRole="Cloth_of_products" />
+    <NavigationProperty Name="Furniture_of_product" Relationship="Self.FK_Furniture_of_product_The_product" FromRole="The_product" ToRole="Furniture_of_product" />
+    <NavigationProperty Name="Ordered_products" Relationship="Self.FK_Ordered_products_The_product" FromRole="The_product" ToRole="Ordered_products" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_User" FromRole="User" ToRole="Order" />
+    <NavigationProperty Name="Order1" Relationship="Self.FK_Order_User1" FromRole="User" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Warehouse_of_furniture">
+    <Key>
+      <PropertyRef Name="Batch" />
+    </Key>
+    <Property Name="Batch" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_of_furniture" Type="Int32" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Furniture" Relationship="Self.FK_Warehouse_of_furniture_Furniture" FromRole="Warehouse_of_furniture" ToRole="Furniture" />
+  </EntityType>
+  <Association Name="FK_Cloth_of_products_Cloth">
+    <End Role="Cloth" Type="Self.Cloth" Multiplicity="0..1" />
+    <End Role="Cloth_of_products" Type="Self.Cloth_of_products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cloth">
+        <PropertyRef Name="Article_of_cloth" />
+      </Principal>
+      <Dependent Role="Cloth_of_products">
+        <PropertyRef Name="Article_of_cloth" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fabric_warehouse_Cloth">
+    <End Role="Cloth" Type="Self.Cloth" Multiplicity="1" />
+    <End Role="Fabric_warehouse" Type="Self.Fabric_warehouse" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Cloth">
+        <PropertyRef Name="Article_of_cloth" />
+      </Principal>
+      <Dependent Role="Fabric_warehouse">
+        <PropertyRef Name="Article_of_cloth" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cloth_of_products_The_product">
+    <End Role="The_product" Type="Self.The_product" Multiplicity="0..1" />
+    <End Role="Cloth_of_products" Type="Self.Cloth_of_products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="The_product">
+        <PropertyRef Name="ID_Product" />
+      </Principal>
+      <Dependent Role="Cloth_of_products">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Furniture_of_product_Furniture">
+    <End Role="Furniture" Type="Self.Furniture" Multiplicity="0..1" />
+    <End Role="Furniture_of_product" Type="Self.Furniture_of_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Furniture">
+        <PropertyRef Name="Article_of_furniture" />
+      </Principal>
+      <Dependent Role="Furniture_of_product">
+        <PropertyRef Name="Article_of_furniture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_of_furniture_Furniture">
+    <End Role="Furniture" Type="Self.Furniture" Multiplicity="0..1" />
+    <End Role="Warehouse_of_furniture" Type="Self.Warehouse_of_furniture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Furniture">
+        <PropertyRef Name="Article_of_furniture" />
+      </Principal>
+      <Dependent Role="Warehouse_of_furniture">
+        <PropertyRef Name="Article_of_furniture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Furniture_of_product_The_product">
+    <End Role="The_product" Type="Self.The_product" Multiplicity="0..1" />
+    <End Role="Furniture_of_product" Type="Self.Furniture_of_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="The_product">
+        <PropertyRef Name="ID_Product" />
+      </Principal>
+      <Dependent Role="Furniture_of_product">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Ordered_products">
+    <End Role="Ordered_products" Type="Self.Ordered_products" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Ordered_products">
+        <PropertyRef Name="Order_number" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Order_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Manager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ordered_products_The_product">
+    <End Role="The_product" Type="Self.The_product" Multiplicity="0..1" />
+    <End Role="Ordered_products" Type="Self.Ordered_products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="The_product">
+        <PropertyRef Name="ID_Product" />
+      </Principal>
+      <Dependent Role="Ordered_products">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PractikaZachotEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cloth" EntityType="Self.Cloth" />
+    <EntitySet Name="Cloth_of_products" EntityType="Self.Cloth_of_products" />
+    <EntitySet Name="Fabric_warehouse" EntityType="Self.Fabric_warehouse" />
+    <EntitySet Name="Furniture" EntityType="Self.Furniture" />
+    <EntitySet Name="Furniture_of_product" EntityType="Self.Furniture_of_product" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="Ordered_products" EntityType="Self.Ordered_products" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="The_product" EntityType="Self.The_product" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="Warehouse_of_furniture" EntityType="Self.Warehouse_of_furniture" />
+    <AssociationSet Name="FK_Cloth_of_products_Cloth" Association="Self.FK_Cloth_of_products_Cloth">
+      <End Role="Cloth" EntitySet="Cloth" />
+      <End Role="Cloth_of_products" EntitySet="Cloth_of_products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fabric_warehouse_Cloth" Association="Self.FK_Fabric_warehouse_Cloth">
+      <End Role="Cloth" EntitySet="Cloth" />
+      <End Role="Fabric_warehouse" EntitySet="Fabric_warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cloth_of_products_The_product" Association="Self.FK_Cloth_of_products_The_product">
+      <End Role="The_product" EntitySet="The_product" />
+      <End Role="Cloth_of_products" EntitySet="Cloth_of_products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Furniture_of_product_Furniture" Association="Self.FK_Furniture_of_product_Furniture">
+      <End Role="Furniture" EntitySet="Furniture" />
+      <End Role="Furniture_of_product" EntitySet="Furniture_of_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_of_furniture_Furniture" Association="Self.FK_Warehouse_of_furniture_Furniture">
+      <End Role="Furniture" EntitySet="Furniture" />
+      <End Role="Warehouse_of_furniture" EntitySet="Warehouse_of_furniture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Furniture_of_product_The_product" Association="Self.FK_Furniture_of_product_The_product">
+      <End Role="The_product" EntitySet="The_product" />
+      <End Role="Furniture_of_product" EntitySet="Furniture_of_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Ordered_products" Association="Self.FK_Order_Ordered_products">
+      <End Role="Ordered_products" EntitySet="Ordered_products" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User1" Association="Self.FK_Order_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ordered_products_The_product" Association="Self.FK_Ordered_products_The_product">
+      <End Role="The_product" EntitySet="The_product" />
+      <End Role="Ordered_products" EntitySet="Ordered_products" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PractikaZachotModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PractikaZachotModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
